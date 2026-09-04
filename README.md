@@ -19,11 +19,6 @@ Double-click `start_medconnect_server.bat` from the project folder. It opens `ht
 
 Start the MySQL service in the WAMP control panel, open phpMyAdmin, and run `schema.sql` to create the `medconnect` database. The default WAMP connection is `mysql+pymysql://root:@127.0.0.1:3306/medconnect`; update the username, password, or port in `.env` if your WAMP installation differs. Flask-SQLAlchemy creates the tables on first startup.
 
-## Render deployment
-
-Use Render for the Flask web service and Railway for MySQL. First create a MySQL service in Railway and copy its public connection URL. Push this project to a GitHub or GitLab repository, create a new Render Blueprint, and select that repository. In the Render service environment variables, set `DATABASE_URL` to the Railway MySQL URL, along with `ADMIN_EMAIL` and `ADMIN_PASSWORD`. Railway may provide the URL as `mysql://...`; the application automatically converts it to the PyMySQL driver format. Do not use the local WAMP address because Render cannot reach `127.0.0.1` on your computer. Render generates `SECRET_KEY` automatically and sets `FLASK_DEBUG=0`.
-
-After the first deployment, Flask creates the tables automatically. Set a unique admin email and strong password in Render; never commit those values to the repository.
 
 ## Included
 
